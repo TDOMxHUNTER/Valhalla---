@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(0, 0%, 0%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(0, 0%, 0%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(0, 0%, 0%);
+  --primary: hsl(28, 55%, 55%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(210, 40%, 98%);
+  --secondary-foreground: hsl(222.2, 84%, 4.9%);
+  --muted: hsl(210, 40%, 96%);
+  --muted-foreground: hsl(215.4, 16.3%, 46.9%);
+  --accent: hsl(28, 55%, 55%);
+  --accent-foreground: hsl(0, 0%, 0%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(214.3, 31.8%, 91.4%);
+  --input: hsl(214.3, 31.8%, 91.4%);
+  --ring: hsl(28, 55%, 55%);
+  --chart-1: hsl(12, 76%, 61%);
+  --chart-2: hsl(173, 58%, 39%);
+  --chart-3: hsl(197, 37%, 24%);
+  --chart-4: hsl(28, 55%, 55%);
+  --chart-5: hsl(27, 87%, 67%);
+  --radius: 0.5rem;
+
+  /* Custom Viking colors */
+  --nordic-gold: #CE8946;
+  --bronze: #CD7F32;
+  --viking-dark: #1a1a1a;
+  --rune-gray: #2a2a2a;
+
+  /* Font families */
+  --font-cinzel: 'Cinzel', serif;
+  --font-inter: 'Inter', sans-serif;
+}
+
+.dark {
+  --background: hsl(0, 0%, 0%);
+  --foreground: hsl(0, 0%, 100%);
+  --card: hsl(0, 0%, 10%);
+  --card-foreground: hsl(0, 0%, 100%);
+  --popover: hsl(0, 0%, 0%);
+  --popover-foreground: hsl(0, 0%, 100%);
+  --primary: hsl(43, 74%, 49%);
+  --primary-foreground: hsl(0, 0%, 0%);
+  --secondary: hsl(210, 15%, 20%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --muted: hsl(0, 0%, 15%);
+  --muted-foreground: hsl(0, 0%, 70%);
+  --accent: hsl(43, 74%, 49%);
+  --accent-foreground: hsl(0, 0%, 0%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(43, 74%, 49%, 0.2);
+  --input: hsl(0, 0%, 20%);
+  --ring: hsl(43, 74%, 49%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-inter antialiased;
+    background-image: url('/background.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+}
+
+@layer components {
+  .font-cinzel {
+    font-family: var(--font-cinzel);
+  }
+
+  .font-inter {
+    font-family: var(--font-inter);
+  }
+
+  .text-nordic-gold {
+    color: var(--nordic-gold);
+  }
+
+  .bg-nordic-gold {
+    background-color: var(--nordic-gold);
+  }
+
+  .text-bronze {
+    color: var(--bronze);
+  }
+
+  .bg-bronze {
+    background-color: var(--bronze);
+  }
+
+  .bg-viking-dark {
+    background-color: var(--viking-dark);
+  }
+
+  .bg-rune-gray {
+    background-color: var(--rune-gray);
+  }
+
+  .border-nordic-gold {
+    border-color: var(--nordic-gold);
+  }
+
+  .viking-gradient {
+    background: linear-gradient(135deg, var(--viking-dark) 0%, var(--rune-gray) 50%, var(--viking-dark) 100%);
+  }
+
+  .rune-border {
+    border-image: linear-gradient(45deg, var(--nordic-gold), var(--bronze)) 1;
+  }
+}
+
+@layer utilities {
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 20px var(--nordic-gold);
+    }
+    to {
+      box-shadow: 0 0 30px var(--nordic-gold), 0 0 40px var(--nordic-gold);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* Background animation */
+@keyframes backgroundPulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 0.9; }
+}
+
+/* Page background blending */
+.page-background {
+  background-image: url('/background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+}
+
+.page-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(206, 137, 70, 0.1) 25%,
+    rgba(0, 0, 0, 0.9) 50%,
+    rgba(205, 127, 50, 0.1) 75%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  z-index: -1;
+}
+}
+
+/* Global background */
+body {
+  background-image: url('/background.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+/* AppKit wallet connect button styling */
+w3m-button {
+  --w3m-accent: #CE8946 !important;
+  --w3m-color-mix: #CE8946 !important;
+  --w3m-color-mix-strength: 40 !important;
+  --w3m-border-radius-master: 12px !important;
+}
+
+/* Style the connect wallet button */
+w3m-button button,
+w3m-connect-button button,
+w3m-account-button button {
+  background: linear-gradient(135deg, #CE8946, #B8752F) !important;
+  color: #000 !important;
+  border: 2px solid #CE8946 !important;
+  font-weight: 600 !important;
+  font-family: 'Cinzel', serif !important;
+  transition: all 0.3s ease !important;
+  border-radius: 12px !important;
+  padding: 12px 24px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  box-shadow: 0 4px 15px rgba(206, 137, 70, 0.3) !important;
+}
+
+w3m-button button:hover,
+w3m-connect-button button:hover,
+w3m-account-button button:hover {
+  background: linear-gradient(135deg, #FFA500, #FF8C00) !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 6px 25px rgba(206, 137, 70, 0.5) !important;
+  border-color: #FFA500 !important;
+}
+
+/* Style the modal */
+w3m-modal {
+  --w3m-accent: #CE8946 !important;
+  --w3m-background: #1a1625 !important;
+  --w3m-foreground: #2a2438 !important;
+  --w3m-border-radius-master: 12px !important;
+}
+
+/* Style network buttons in modal */
+w3m-modal button {
+  border-radius: 8px !important;
+  font-family: 'Cinzel', serif !important;
+}
+
+w3m-modal [data-variant="accent"] {
+  background: linear-gradient(135deg, #CE8946, #B8752F) !important;
+  color: #000 !important;
+}
+
+/* Account view styling */
+w3m-account-view {
+  --w3m-accent: #CE8946 !important;
+}
+
+/* Network button styling */
+w3m-network-button button {
+  background: rgba(206, 137, 70, 0.1) !important;
+  border: 1px solid #CE8946 !important;
+  color: #CE8946 !important;
+}
+
+w3m-network-button button:hover {
+  background: rgba(206, 137, 70, 0.2) !important;
+  border-color: #FFA500 !important;
+}
